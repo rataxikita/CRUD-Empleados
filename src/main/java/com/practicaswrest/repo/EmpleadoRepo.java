@@ -1,15 +1,7 @@
-
 package com.practicaswrest.repo;
 
-import com.practicaswrest.Entity.Empleado;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.practicaswrest.Entity.Empleado;
 
-/**
- *
- * @author Catalina
- */
-@Repository
-public interface EmpleadoRepo extends JpaRepository<Empleado, Integer>{
-    
+public interface EmpleadoRepo extends JpaRepository<Empleado, Long> {
 }

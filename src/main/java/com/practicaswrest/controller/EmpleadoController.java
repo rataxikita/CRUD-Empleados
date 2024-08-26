@@ -4,9 +4,12 @@ package com.practicaswrest.controller;
 import com.practicaswrest.Entity.Empleado;
 import com.practicaswrest.service.EmpleadoService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,6 +43,11 @@ public Empleado actualizar(@RequestBody Empleado emp){
 public void eliminar(@RequestBody Empleado emp){
     empleadoservice.eliminar(emp);
 }
-
+@GetMapping("/{id}")
+public ResponseEntity<Empleado> obtenerEmpleadoPorId(@PathVariable Long id) {
+    Optional<Empleado> empleado = empleadoservice.obtenerEmpleadoPorId(id);
+    return empleado.map(ResponseEntity::ok)
+                    .orElseGet(() -> ResponseEntity.notFound().build());
+}
 }
     
